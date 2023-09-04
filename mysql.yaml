@@ -1,7 +1,7 @@
 ---
 - name: Install MySQL on CentOS
-  hosts: 172.16.0.226
-  become: no
+  hosts: 172.16.0.194
+  become: yes
   tasks:
     - name: Install MySQL Server
       yum:
