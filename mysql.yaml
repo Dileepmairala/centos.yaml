@@ -1,15 +1,16 @@
 ---
-- name: Install MySQL on CentOS
+- name: Install Apache2 on CentOS 7
   hosts: 172.16.0.194
   become: yes
   tasks:
-    - name: Install MySQL Server
+    - name: Update YUM package manager
       yum:
-        name: mysql-server
-        state: present
+        name: '*'
+        state: latest
+      register: update_result
+      changed_when: update_result is changed
 
-    - name: Start MySQL Service
-      service:
-        name: mysqld
-        state: started
-        enabled: yes
+    - name: Install Apache2
+      yum:
+        name: httpd
+        state: present
