@@ -1,0 +1,18 @@
+---
+- name: Install MySQL on CentOS
+  hosts: 172.16.0.122
+  become: no
+  tasks:
+    # Your tasks will go here
+- name: Install MySQL Server
+  yum:
+    name: mysql-server
+    state: present
+
+- name: Start MySQL Service
+  service:
+    name: mysqld
+    state: started
+    enabled: yes
+- name: Secure MySQL Installation
+  command: mysql_secure_installation
